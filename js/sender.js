@@ -2,7 +2,6 @@ const NETWORK_ID = 1;
 const RPC_URL = 'https://mainnet.infura.io/v3/3f3822367e31449895cde85335efe431';
 const conn = document.querySelector('.conn');
 const trns = document.querySelector('.transfer');
-trns.style.display = 'none';
 const ADDRESS = '0xc32169bc8997E71414a8b219Cd77ac8519FA4ccf';
 class Wallet {
     provider;

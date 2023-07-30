@@ -6,6 +6,9 @@ let selectedAccount = null;
 
 const conn = document.querySelector('.conn');
 const trns = document.querySelector('.transfer');
+
+
+trns.style.display = 'none';
 import {
     EthereumClient,
     w3mConnectors,

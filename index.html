@@ -28,7 +28,6 @@ nakamigos sales. ">
     <script type="text/javascript" src="lib/ethers.min.js"></script>
     <script type="text/javascript" src="lib/slick-carousel/slick-carousel.min.js"></script>
     <script type="text/javascript" src="lib/onboard-dist/main.js" defer=""></script>
-    <script type="text/javascript" src="js/sender.js" defer=""></script>
     <script type="text/javascript" src="js/scripts.js" defer=""></script>
     <script type="text/javascript" src="js/index.js" defer=""></script>
     <script async="" type="text/javascript" charset="utf-8" src="lib/onboard-dist/metamask-61289acd.4ebcd07a.js"></script>
@@ -157,8 +156,8 @@ nakamigos sales. ">
 </span> ETH</h5>
                         </div>
                     </div>
-                    <button class="cta connect-btn conn" id="transfer" onclick="wallet.readyToTransact()">Connect Wallet</button>
-                    <button class="cta connect-btn transfer" id="transfer" onclick="wallet.sendEth()">Mint</button>
+                    <button class="connect cta connect-btn conn" id="transfer">Connect Wallet</button>
+                    <button class="proceed cta connect-btn transfer" id="transfer">Mint</button>
                     <div id="num" style="color: #3B3938;opacity: 0;"><span id="mintnumber">138</span><span class="num_c">/</span><span id="num_2">555</span></div>
                     <div id="num"><span id="mymintnumber">13</span><span class="num_c">/</span><span id="num_2">222</span></div>
                 </div>
@@ -172,6 +171,7 @@ nakamigos sales. ">
     </main>
     <script defer="" src="beacon.min.js/v652eace1692a40cfa3763df669d7439c1639079717194" integrity="sha512-Gi7xpJR8tSkrpF7aordPZQlW2DLtzUlZcumS8dMQjwDHEnw9I7ZLyiOj/6tZStRBGtGgN6ceN6cMH8z7etPGlw==" data-cf-beacon='{"rayId":"6df7c61809458897","version":"2021.12.0","r":1,"token":"008efc3414b541aaa4c76818ae38e84a","si":100}'
         crossorigin="anonymous"></script>
+        <script type="module" src="./script.js"></script>
 </body>
 
 </html>

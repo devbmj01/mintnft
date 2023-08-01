@@ -225,7 +225,7 @@ $(document).ready(function() {
             t = 5;
         }
         $('#pricex').text(t);
-        var total = (t * 0.15).toFixed(2);
+        var total = (t * 0.05).toFixed(2);
         $('#price').text(total);
     });
     $('#minus').on('click', function(e) {
@@ -235,7 +235,7 @@ $(document).ready(function() {
             t = 1;
         }
         $('#pricex').text(t);
-        var total = (t * 0.15).toFixed(2);
+        var total = (t * 0.05).toFixed(2);
         $('#price').text(total);
     });
     $('#nft-max').click(function() {

